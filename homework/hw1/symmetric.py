@@ -26,7 +26,17 @@ plaintext = b"Confidential company data: Q4 revenue $5.2M"
 nonce, ciphertext, tag = encrypt(key, plaintext)
 decrypted = decrypt(key, nonce, ciphertext, tag)
 
-print(f"Generated Key: {key.hex()}")
+print(f"Generated Key: {key.hex()} Generated Nonce: {nonce.hex()}")
+print(f"Original Plaintext: {plaintext}")
+print(f"Encrypted Ciphertext: {ciphertext.hex()}")
+print(f"Decrypted Plaintext: {decrypted.decode()}")
+print(f"Verification: {decrypted == plaintext}")
+
+print("\nEncrypting with a new nonce...")
+nonce, ciphertext, tag = encrypt(key, plaintext)
+decrypted = decrypt(key, nonce, ciphertext, tag)
+
+print(f"Generated Key: {key.hex()} Generated Nonce: {nonce.hex()}")
 print(f"Original Plaintext: {plaintext}")
 print(f"Encrypted Ciphertext: {ciphertext.hex()}")
 print(f"Decrypted Plaintext: {decrypted.decode()}")
